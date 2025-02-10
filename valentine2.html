@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Градиентная Валентинка</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(45deg, #ff4d6d, #ffccd5);
+            color: white;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .heart {
+            font-size: 350px;
+            animation: pulse 1.5s infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .message {
+            font-size: 40px;
+            font-weight: bold;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+            line-height: 1.5;
+        }
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .heart-float {
+            position: absolute;
+            color: red;
+            font-size: 40px;
+            opacity: 0.7;
+            animation: float 5s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0); opacity: 1; }
+            100% { transform: translateY(-10vh) translateX(10px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="heart">💖</div>
+        <p class="message">Ты — мой ангелочек! ❤️</p>
+    </div>
+
+    <div class="hearts" id="hearts"></div>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.innerHTML = "❤️";
+            heart.classList.add("heart-float");
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 1.5 + 2 + "s";
+            document.getElementById("hearts").appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 200);
+    </script>
+</body>
+</html>
+
+
